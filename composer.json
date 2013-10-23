@@ -1,0 +1,51 @@
+{
+    "require": {
+        "Yubico/php-yubico": "dev-master",
+        "Mollie/sms-php5": "dev-master",
+        "xmlseclibs": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear2.php.net"
+        },
+        {
+            "type":"package",
+            "package": {
+                "version":"dev-master",
+                "name":"Yubico/php-yubico",
+                "source": {
+                    "url":"https://github.com/Yubico/php-yubico.git",
+                    "type":"git",
+                    "reference":"master"
+                },
+                "dist": {
+                    "url":"https://github.com/Yubico/php-yubico/zipball/master",
+                    "type":"zip"
+                }
+            }
+        },
+	{
+            "type":"package",
+            "package": {
+                "version":"dev-master",
+                "name":"Mollie/sms-php5",
+                "dist": {
+                    "url":"https://www.mollie.nl/files/examples/sms/api-php5.zip",
+                    "type":"zip"
+                }
+            }
+	},
+	{
+            "type":"package",
+            "package": {
+                "version":"dev-master",
+                "name":"xmlseclibs",
+                "dist": {
+                    "url":"https://xmlseclibs.googlecode.com/files/xmlseclibs-1.3.1.tar.gz",
+                    "type":"tar"
+                }
+            }
+	}
+    ]
+}

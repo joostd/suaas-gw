@@ -1,0 +1,7 @@
+*.tar
+*.pem
+composer.lock
+composer.phar
+local_config.php
+.idea
+vendor
