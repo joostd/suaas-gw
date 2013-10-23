@@ -1,11 +1,12 @@
 <?php
-include_once('./host.php');
-include('./config.php');
+include('../config.php');
 
 $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/metadata';
 
 // convention: use metadata URL as entity ID
-$entityID = "$proto://$host$uri";
+//$entityID = "$proto://$host$uri";
+$entityID = $config['entity_id'];
+
 $base = dirname($uri);
 $acs_location = "$proto://$host$base/acs.php";
 $sso_location = "$proto://$host$base/sso.php";
