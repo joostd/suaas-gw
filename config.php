@@ -1,5 +1,5 @@
 <?php
-include_once(dirname(__FILE__) . '/host.php');
+$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost:8080';
 
 $config = array(
     'sp' => array(
@@ -10,12 +10,12 @@ $config = array(
     'idp' => array(
         "http://$host/idp/metadata.php" => array(
             'sso' =>  "http://$host/idp/sso.php",
-            'certfile' => "verify.pem",
+            'certfile' => dirname(__FILE__) . "/www/idp/cert.pem",
         )
     ),
     'entity_id' => "http://$host/metadata.php",
-    'keyfile' => "key.pem",
-    'certfile' => "cert.pem",
+    'keyfile' => dirname(__FILE__) . "/key.pem",
+    'certfile' => dirname(__FILE__) . "/cert.pem",
     'userstore' => array(
     	'dsn' => 'mysql:host=127.0.0.1;dbname=suaas',
     	'username' => 'suaas',
