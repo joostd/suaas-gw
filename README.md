@@ -52,7 +52,7 @@ run
 
 Using php 5.4, you can use the built-in web server:
 
-	php -S localhost:8080
+	php -S localhost:8080 -t www
 
 When accessing the SP, a request will be made to the IDP, e.g.
 
