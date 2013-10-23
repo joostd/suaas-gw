@@ -9,7 +9,7 @@ include('../config.php');
 
 # gateway SP
 $issuer = $config['entity_id'];
-$acs_url = "http://$host/acs.php"; // TODO https
+$acs_url = "$proto://$host/acs.php"; // TODO https
 
 # remote IDP
 $idp_entityID = array_keys( $config['idp'] )[0];   // no IDP discovery: take first one

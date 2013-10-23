@@ -1,19 +1,26 @@
 <?php
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost:8080';
 
+$proto = 'http';
+
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
+{
+    $proto = 'https';
+}
+
 $config = array(
     'sp' => array(
-        "http://$host/sp/metadata.php" => array(
-            'acs' =>  "http://$host/sp/acs.php",
+        "$proto://$host/sp/metadata.php" => array(
+            'acs' =>  "$proto://$host/sp/acs.php",
         )
     ),
     'idp' => array(
-        "http://$host/idp/metadata.php" => array(
-            'sso' =>  "http://$host/idp/sso.php",
+        "$proto://$host/idp/metadata.php" => array(
+            'sso' =>  "$proto://$host/idp/sso.php",
             'certfile' => dirname(__FILE__) . "/www/idp/cert.pem",
         )
     ),
-    'entity_id' => "http://$host/metadata.php",
+    'entity_id' => "$proto://$host/metadata.php",
     'keyfile' => dirname(__FILE__) . "/key.pem",
     'certfile' => dirname(__FILE__) . "/cert.pem",
     'userstore' => array(

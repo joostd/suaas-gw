@@ -5,9 +5,9 @@ include("../../config.php");
 $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/metadata';
 
 // convention: use metadata URL as entity ID
-$entityID = "http://$host$uri";
+$entityID = "$proto://$host$uri";
 $base = dirname($uri);
-$acs_location = "http://$host$base/acs.php";
+$acs_location = "$proto://$host$base/acs.php";
 
 $xml = <<<XML
 <EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="$entityID">

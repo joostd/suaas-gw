@@ -16,7 +16,7 @@ $directory = array(
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost:8080';
 
 // SP data
-$acs = "http://$host/acs.php";
+$acs = "$proto://$host/acs.php";
 $destination = htmlspecialchars($acs);
 $audience = "http:/gw.com/";
 

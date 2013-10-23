@@ -3,11 +3,11 @@
 include("../../config.php");
 
 # local SP
-$issuer = "http://$host/sp/metadata.php";
-$acs_url = "http://$host/sp/acs.php";
+$issuer = "$proto://$host/sp/metadata.php";
+$acs_url = "$proto://$host/sp/acs.php";
 
 # remote IDP
-$sso_url = "http://$host/sso.php";
+$sso_url = "$proto://$host/sso.php";
 
 $now = gmdate("Y-m-d\TH:i:s\Z", time());
 $id = "_"; for ($i = 0; $i < 42; $i++ ) $id .= dechex( rand(0,15) );

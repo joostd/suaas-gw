@@ -3,8 +3,8 @@
 include("../../config.php");
 
 // convention: use metadata URL as entity ID
-$entityID = "http://$host" . $_SERVER['PHP_SELF'];
-$sso_location = "http://$host/sso.php";
+$entityID = "$proto://$host" . $_SERVER['PHP_SELF'];
+$sso_location = "$proto://$host/sso.php";
 
 $xml = <<<XML
 <EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="$entityID">
