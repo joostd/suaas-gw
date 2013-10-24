@@ -1,10 +1,14 @@
-Minimal SAML 2.0 implementation
-===============================
+Step-up authentication proxy
+============================
+
+This software is a prototype implementation for a step-up authentication SAML proxy.
+It proxies between a SAML 2.0 Identity Provider (IDP) and one or more SAML 2.0 Service providers (SPs).
+SAML protocol messages are passed between IDP and SP, where SAML AuthnContextClassRef elements are used to signal the requested/desired Level of Assureance (LoA).
 
 WARNING
 -------
 
-This is example code, useful for debugging and experimentation. DO NOT USE IN A PRODUCTION ENVIRONMENT. This code is insecure!
+This is prototype code, useful for debugging and experimentation. DO NOT USE IN A PRODUCTION ENVIRONMENT. This code is insecure!
 
 Limitations
 -----------
