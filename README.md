@@ -17,7 +17,6 @@ Limitations
 - only HTTP-POST Binding for authentication responses
 - no signing/verification of authentication requests
 - only signing of assertions (not responses)
-- static user directory - no external user stores
 
 Furthermore, there is hardly any error checking/handling.
 
@@ -28,6 +27,10 @@ requirements
 - php-xsl, for rendering attributes (acs.php)
 - php-mysql, when using mysql
 - xmlseclibs, available from https://code.google.com/p/xmlseclibs/
+
+Note that a database is used as a user/token store.
+The database scheme is identical to that of the corresponding
+[token registration and vetting application](https://github.com/SURFnet/suaas-ra)
 
 install
 -------
