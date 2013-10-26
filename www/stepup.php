@@ -16,6 +16,10 @@ $type = $sth->fetchColumn();
 // TODO; check
 error_log("selected authentication method '$type' for user $userId");
 
+if( $type == '' ) {
+	$type = 'none';
+}
+
 $location = "$type/";
 
 header("Location: $location");

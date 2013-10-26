@@ -54,6 +54,10 @@ $handle = new PDO($config['userstore']['dsn'], $config['userstore']['username'],
 $sth = $handle->prepare("SELECT authentication_method.phone_number FROM authentication_method, user WHERE user.id = authentication_method.owner_id and user.name_id=? and authentication_method.type = 'mollie'");
 $sth->execute(array($userId));
 $phone_number = $sth->fetchColumn();
+
+if (preg_match('~^[0-9]{8}$~i', $phone_number)) {
+    $phone_number = "00316" . $phone_number;
+}
 error_log("retrieved phone number ($phone_number) for user $userId");
 
 // todo send sms only once
