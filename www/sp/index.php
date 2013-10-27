@@ -2,6 +2,30 @@
 
 include("../../config.php");
 
+$loa = NULL;
+if( isset( $_GET['loa'] ) && preg_match('/^[1-4]$/', $_GET['loa']) ) {
+  $loa = $_GET['loa'];
+}
+
+if( $loa == NULL ) {
+    ?>
+    <form>
+        <select name='loa' onchange='this.form.submit()'>
+            <option value=''>Select the desired LoA</option>
+            <option value='1'>LoA 1</option>
+            <option value='2'>LoA 2</option>
+            <option value='3'>LoA 3</option>
+            <option value='4'>LoA 4</option>
+        </select>
+    </form>
+
+    <?php
+    exit(1);
+}
+
+$loa = "http://suaas.example.com/assurance/loa$loa";
+error_log("requested LoA: $loa");
+
 # local SP
 $issuer = "$proto://$host/sp/metadata.php";
 $acs_url = "$proto://$host/sp/acs.php";
@@ -24,6 +48,9 @@ $request = <<<XML
   ProtocolBinding='urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
 >
   <saml:Issuer>$issuer</saml:Issuer>
+  <samlp:RequestedAuthnContext>
+    <saml:AuthnContextClassRef>$loa</saml:AuthnContextClassRef>
+  </samlp:RequestedAuthnContext>
 </samlp:AuthnRequest>
 XML;
 

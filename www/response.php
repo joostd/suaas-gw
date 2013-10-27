@@ -53,6 +53,7 @@ $xslDoc = new DOMDocument();
 $xslDoc->load("../xslt/set-authncontext.xslt");
 $proc = new XSLTProcessor();
 $proc->importStylesheet($xslDoc);
+$proc->setParameter('','loa',"http://suaas.example.com/assurance/loa$loa");
 $response = $proc->transformToXML($dom);
 
 ### response

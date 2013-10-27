@@ -31,6 +31,18 @@ if ($dom->getElementsByTagName('AuthnRequest')->length == 0) {
 }
 $authnrequest = $dom->getElementsByTagName('AuthnRequest')->item(0);
 $requestor = $dom->getElementsByTagName('Issuer')->item(0)->textContent;
+
+$xpath = new DOMXPath($dom);
+$xpath->registerNamespace('samlp', "urn:oasis:names:tc:SAML:2.0:protocol");
+$xpath->registerNamespace('saml', "urn:oasis:names:tc:SAML:2.0:assertion");
+$query = "string(//samlp:RequestedAuthnContext/saml:AuthnContextClassRef)";
+$requested_loa = $xpath->evaluate($query, $dom);
+if (!$requested_loa) {
+    throw new Exception('Could not determine requested LoA'); // todo - default to loa1
+}
+error_log("requested LoA is $requested_loa");
+$_SESSION['req_loa'] = $requested_loa;
+
 // TODO store requests decently such that multiple simultaneous requests are supported
 $_SESSION['requestor'] = $requestor;
 $sprequestid = $authnrequest->getAttribute('ID');

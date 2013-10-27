@@ -72,6 +72,10 @@ $proc = new XSLTProcessor();
 $proc->importStylesheet($xslDoc);
 $unsigned_response = $proc->transformToXML($dom);
 
+session_start();
+$requested_loa = $_SESSION['req_loa'];
+error_log("requested LoA was $requested_loa");
+
 // retrieve NameID
 
 $xpath = new DOMXPath($dom);
@@ -83,9 +87,14 @@ if (!$nameID) {
 }
 error_log("NameID is $nameID");
 
-session_start();
 // save response for after step-up authentication
 $_SESSION['response'] = $unsigned_response;
 $_SESSION['nameID'] = $nameID;
+unset( $_SESSION['req_loa'] );
 
-header('Location: ' . 'stepup.php');
+if( "http://suaas.example.com/assurance/loa1" == $requested_loa) {
+    $_SESSION['loa'] = 1;
+    header('Location: response.php');
+}
+else
+    header('Location: ' . 'stepup.php');

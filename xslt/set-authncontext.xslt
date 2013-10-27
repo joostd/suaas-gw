@@ -6,8 +6,10 @@
   <xsl:import href="copy.xslt"/>
   <xsl:output omit-xml-declaration="yes"/>
 
+  <xsl:param name="loa" select="'urn:oasis:names:tc:SAML:2.0:ac:classes:Password '"/>
+
   <xsl:template match="saml:AuthnContextClassRef">
-    <saml:AuthnContextClassRef>http://suaas.example.com/assurance/loa2</saml:AuthnContextClassRef>
+    <saml:AuthnContextClassRef><xsl:value-of select="$loa"/></saml:AuthnContextClassRef>
   </xsl:template>
 
 </xsl:stylesheet>

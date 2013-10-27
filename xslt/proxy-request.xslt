@@ -27,10 +27,14 @@
   <saml:Issuer><xsl:value-of select="$issuer"/></saml:Issuer>
   </xsl:template>
 
-<!--
-    <samlp:Scoping ProxyCount="10">
-        <samlp:RequesterID>XXX</samlp:RequesterID>
-    </samlp:Scoping>
--->
+    <!-- ignore RequestedAuthnContext completely -->
+  <xsl:template match="samlp:RequestedAuthnContext">
+  </xsl:template>
+
+    <!--
+        <samlp:Scoping ProxyCount="10">
+            <samlp:RequesterID>XXX</samlp:RequesterID>
+        </samlp:Scoping>
+    -->
 
 </xsl:stylesheet>
