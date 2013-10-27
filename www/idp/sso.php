@@ -1,6 +1,6 @@
 <?php
 
-include('../../vendor/xmlseclibs/xmlseclibs.php');
+include('../../config.php');
 include('../saml.php');
 
 # sample user store - in reality you would connect to something like LDAP

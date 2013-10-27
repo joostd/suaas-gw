@@ -1,6 +1,5 @@
 <?php
 
-//include_once('../host.php');
 include_once('../../config.php');
 
 function generateOTP() {
