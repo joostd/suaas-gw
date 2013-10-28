@@ -90,7 +90,6 @@ error_log("NameID is $nameID");
 // save response for after step-up authentication
 $_SESSION['response'] = $unsigned_response;
 $_SESSION['nameID'] = $nameID;
-unset( $_SESSION['req_loa'] );
 
 if( "http://suaas.example.com/assurance/loa1" == $requested_loa) {
     $_SESSION['loa'] = 1;

@@ -1,6 +1,7 @@
 <xsl:stylesheet
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+    xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
 	xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
 	version='1.0'
 >
@@ -14,7 +15,23 @@
 </html>
 </xsl:template>
 
-<!-- -->
+    <!-- handle Response Status -->
+    <xsl:template match="samlp:Status[samlp:StatusCode/@Value='urn:oasis:names:tc:SAML:2.0:status:Success']" >
+        <h4><xsl:text>Authentication successful</xsl:text></h4>
+    </xsl:template>
+
+    <xsl:template match="samlp:Status" >
+        <h4><xsl:text>Authentication unsuccessful</xsl:text></h4>
+        <xsl:apply-templates/>
+    </xsl:template>
+
+    <xsl:template match="samlp:StatusCode" >
+        <b><xsl:text>StatusCode:</xsl:text></b>
+        <xsl:value-of select="@Value"/><br/>
+        <xsl:apply-templates/>
+    </xsl:template>
+
+    <!-- -->
 <xsl:template match="saml:NameID" >
   <b><xsl:text>Name ID:</xsl:text></b>
   <xsl:value-of select="."/><br/>
@@ -27,7 +44,7 @@
 <!--
 -->
 <xsl:template match="saml:AuthnContext" >
-  <xsl:text>LoA: </xsl:text>
+  <b><xsl:text>LoA: </xsl:text></b>
   <xsl:value-of select="saml:AuthnContextClassRef"/>
 </xsl:template>
 
@@ -55,6 +72,7 @@
 <xsl:template match="saml:Issuer" >
 </xsl:template>
 
+<!-- ignore signatures -->
 <xsl:template match="ds:Signature"/>
 
 </xsl:stylesheet>

@@ -38,7 +38,8 @@ $xpath->registerNamespace('saml', "urn:oasis:names:tc:SAML:2.0:assertion");
 $query = "string(//samlp:RequestedAuthnContext/saml:AuthnContextClassRef)";
 $requested_loa = $xpath->evaluate($query, $dom);
 if (!$requested_loa) {
-    throw new Exception('Could not determine requested LoA'); // todo - default to loa1
+    error_log('Could not determine requested LoA - defaulting to LoA 1');
+    $requested_loa = '1';
 }
 error_log("requested LoA is $requested_loa");
 $_SESSION['req_loa'] = $requested_loa;

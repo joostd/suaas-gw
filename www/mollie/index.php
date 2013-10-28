@@ -65,6 +65,8 @@ $result = sms_send_mollie($phone_number, $otp);
 if( $result == FALSE ) {
     error_log("failed to send otp to $phone_number");
 }
+error_log("sent $otp to $phone_number, result is $result");
+
 $_SESSION['otp'] = $otp;
 
 header('Location: ' . 'verify.php');

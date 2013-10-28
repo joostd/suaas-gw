@@ -1,7 +1,5 @@
 <?php
 
-//include_once('../host.php');
-
 function verify($otp) {
     $nonce = ""; for ($i = 0; $i < 40; $i++ ) $nonce .= dechex( rand(0,15) );
 
@@ -80,8 +78,8 @@ if( $stepup == NULL ) {
 } elseif( isValid($yubikey_id, $stepup) ) {	// TODO
     // OTP is correct, proceed
     $_SESSION['yubikey_id'] = NULL;
-    $_SESSION['loa'] = 2;
-    header('Location: ' . '/response.php');
+    $_SESSION['loa'] = 3;
+    header('Location: /set-authncontext.php');
 } else {
     $msg = "Invalid otp";
 }

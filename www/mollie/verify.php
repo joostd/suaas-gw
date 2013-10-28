@@ -16,7 +16,7 @@ if( $stepup == $otp ) {
     // OTP is correct, proceed
     $_SESSION['otp'] = NULL;
     $_SESSION['loa'] = 2;
-    header('Location: ' . '/response.php');
+    header('Location: ' . '/set-authncontext.php');
 }
 
 
