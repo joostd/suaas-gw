@@ -11,6 +11,22 @@
   <xsl:param name="acs" select="'http://idp.com/acs'"/>
   <xsl:param name="issuer" select="'http://gw.com'"/>
 
+<!--
+copy AuthnRequest element, apply transforms on attributes and add scoping element
+NOTE: Scoping is the last child of an AuthnRequest element:
+      AuthnRequest -> saml:Subject, samlp:NameIDPolicy, saml:Conditions, samlp:RequestedAuthnContext, samlp:Scoping
+  -->
+
+  <xsl:template match="samlp:AuthnRequest">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates />
+    <samlp:Scoping ProxyCount="10">
+      <samlp:RequesterID><xsl:value-of select="saml:Issuer"/></samlp:RequesterID>
+    </samlp:Scoping>
+    </xsl:copy>
+  </xsl:template>
+
   <xsl:template match="samlp:AuthnRequest/@AssertionConsumerServiceURL">
     <xsl:attribute name="AssertionConsumerServiceURL">
       <xsl:value-of select="$acs"/>
@@ -27,14 +43,9 @@
   <saml:Issuer><xsl:value-of select="$issuer"/></saml:Issuer>
   </xsl:template>
 
-    <!-- ignore RequestedAuthnContext completely -->
+  <!-- ignore RequestedAuthnContext completely: we'll accept anything, and see if we need to step up based on what is returned -->
+  <!-- TODO: leave RAC alone in case the IDP is capable itself of authenticating the subject with the desired LoA.  -->
   <xsl:template match="samlp:RequestedAuthnContext">
   </xsl:template>
-
-    <!--
-        <samlp:Scoping ProxyCount="10">
-            <samlp:RequesterID>XXX</samlp:RequesterID>
-        </samlp:Scoping>
-    -->
 
 </xsl:stylesheet>

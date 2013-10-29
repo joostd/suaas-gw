@@ -12,6 +12,10 @@ error_log("retrieving request with ID $sprequestid from session");
 $sp_entityID = $_SESSION['requestor']; // TODO support multiple simultaneous requests
 error_log("Retrieved request from $sp_entityID");
 
+if( !array_key_exists($sp_entityID, $config['sp'])) {
+    throw new Exception("Unknown SP: $sp_entityID");
+}
+
 $acs = $config['sp'][$sp_entityID]['acs'];
 $destination = htmlspecialchars($acs);
 error_log("Setting ACS location to $acs");

@@ -24,16 +24,24 @@
     </xsl:attribute>
   </xsl:template>
 
-  <xsl:template match="saml:Audience">
-  <saml:Audience><xsl:value-of select="$audience"/></saml:Audience>
+  <xsl:template match="saml:Audience/text()">
+  <xsl:value-of select="$audience"/>
   </xsl:template>
 
-  <xsl:template match="saml:Issuer">
-  <saml:Issuer><xsl:value-of select="$issuer"/></saml:Issuer>
+  <xsl:template match="saml:Issuer/text()">
+  <xsl:value-of select="$issuer"/>
   </xsl:template>
 
-<!--
-<saml:AuthenticatingAuthority>XXX</saml:AuthenticatingAuthority>
+<!-- NOTE:
+saml:AuthnContext is a mandatory and last child of AuthnStatement
+saml:AuthenticatingAuthority is an optional last child of AuthnContext
 -->
+  <xsl:template match="saml:AuthnContext">
+    <xsl:copy>
+      <xsl:apply-templates select="@*"/>
+      <xsl:apply-templates />
+      <saml:AuthenticatingAuthority><xsl:value-of select="../../saml:Issuer"/></saml:AuthenticatingAuthority>
+    </xsl:copy>
+  </xsl:template>
 
 </xsl:stylesheet>
