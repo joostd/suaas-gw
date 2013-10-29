@@ -15,6 +15,7 @@
 copy AuthnRequest element, apply transforms on attributes and add scoping element
 NOTE: Scoping is the last child of an AuthnRequest element:
       AuthnRequest -> saml:Subject, samlp:NameIDPolicy, saml:Conditions, samlp:RequestedAuthnContext, samlp:Scoping
+TODO: check if Scoping already exists, add RequesterID to the element if so
   -->
 
   <xsl:template match="samlp:AuthnRequest">
@@ -39,8 +40,8 @@ NOTE: Scoping is the last child of an AuthnRequest element:
     </xsl:attribute>
   </xsl:template>
 
-  <xsl:template match="saml:Issuer">
-  <saml:Issuer><xsl:value-of select="$issuer"/></saml:Issuer>
+  <xsl:template match="saml:Issuer/text()">
+    <xsl:value-of select="$issuer"/>
   </xsl:template>
 
   <!-- ignore RequestedAuthnContext completely: we'll accept anything, and see if we need to step up based on what is returned -->
