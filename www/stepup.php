@@ -23,7 +23,7 @@ $type = $sth->fetchColumn();
 // TODO; check
 error_log("selected authentication method '$type' for user $userId");
 
-if( !array_key_exists($type, $loas) ) {
+if( !isset($type) || !array_key_exists($type, $loas) ) {
 	$type = 'none';
 } else {
     $loa = $loas[$type];
