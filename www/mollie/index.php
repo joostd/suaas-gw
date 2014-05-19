@@ -23,7 +23,7 @@ function sms_send_mollie($recipient, $msg) {
     $req .= '&recipients=' . urlencode($recipient);
     $req .= '&reference=' . urlencode(time());      # used for reporting, see mollie admin interface for URL reported to
     $req .= '&message=' . urlencode("OTP: " . $msg);
-    $url = "https://secure.mollie.nl/xml/sms/" . $req;
+    $url = "https://api.messagebird.com/xml/sms/" . $req;
 
     $ch = curl_init();
 
