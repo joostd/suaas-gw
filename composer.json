@@ -1,8 +1,8 @@
 {
     "require": {
         "Yubico/php-yubico": "dev-master",
-        "Mollie/sms-php5": "dev-master",
-        "xmlseclibs": "dev-master"
+        "xmlseclibs": "dev-master",
+        "yubico/u2flib-server": "dev-master"
     },
     "repositories": [
         {
@@ -25,17 +25,6 @@
                 }
             }
         },
-	{
-            "type":"package",
-            "package": {
-                "version":"dev-master",
-                "name":"Mollie/sms-php5",
-                "dist": {
-                    "url":"https://www.mollie.nl/files/examples/sms/api-php5.zip",
-                    "type":"zip"
-                }
-            }
-	},
 	{
             "type":"package",
             "package": {
