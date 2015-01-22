@@ -5,6 +5,7 @@ include_once('../config.php');
 $loas = array(
     'mollie' => 2,
     'yubi' => 3,
+    'u2f' => 3,
 );
 
 // todo validate
